@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "tutorial",
+            "name": "instagram_clone_coding",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "tutorial (profile mode)",
+            "name": "instagram_clone_coding (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "tutorial (release mode)",
+            "name": "instagram_clone_coding (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
