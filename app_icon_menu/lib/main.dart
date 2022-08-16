@@ -5,6 +5,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // BuildContext: Widget tree에서 현재 Widget의 위치를 알 수 있는 정보 / stateless 위젯이나 state 빌드 메서드에 의해서 리턴된 위젯의 부모가 됨
     return MaterialApp(
       title: 'AppBar',
       theme: ThemeData(
