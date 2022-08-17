@@ -26,21 +26,33 @@ class MyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amber[800],
+      backgroundColor: Colors.pinkAccent,
       body: SafeArea(
-        child: Container(
-          color: Colors.pinkAccent,
-          width: 100,
-          height: 100,
-          margin: const EdgeInsets.symmetric(
-            vertical: 80,
-            horizontal: 20,
+        child: Center(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Container(
+                width: 100,
+                height: 100,
+                color: Colors.white,
+                child: const Text('Container 1'),
+              ),
+              Container(
+                width: 100,
+                height: 100,
+                color: Colors.grey,
+                child: const Text('Container 2'),
+              ),
+              Container(
+                width: 100,
+                height: 100,
+                color: Colors.amber,
+                child: const Text('Container 3'),
+              ),
+            ],
           ),
-          padding: const EdgeInsets.only(
-            top: 10.0,
-            left: 10.0,
-          ),
-          child: const Text('Hello'),
         ),
       ),
     );
