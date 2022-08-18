@@ -103,7 +103,9 @@ class _ListViewPageState extends State<ListViewPage> {
                 ),
               ),
               ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   icon: const Icon(Icons.close),
                   label: const Text("Close"))
             ],
@@ -147,7 +149,11 @@ class _ListViewPageState extends State<ListViewPage> {
                   Padding(
                     padding: const EdgeInsets.all(10),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        const SizedBox(
+                          height: 2,
+                        ),
                         Text(
                           titleList[index],
                           style: const TextStyle(
