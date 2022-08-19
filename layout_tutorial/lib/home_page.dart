@@ -1,0 +1,61 @@
+import 'package:flutter/material.dart';
+import 'package:layout_tutorial/building_layout.dart';
+import 'package:layout_tutorial/detail_page.dart';
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  static List<String> title = [
+    "Building Layout",
+  ];
+
+  void showDetail(index, title) {}
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Flutter Tutorial"),
+      ),
+      body: ListView.builder(
+        itemCount: title.length,
+        itemBuilder: (context, index) {
+          return Card(
+            child: ListTile(
+              title: Text("${index + 1}. ${title[index]}"),
+              // child: Column(
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     Container(
+              //       margin: const EdgeInsets.all(16.0),
+              //       child: Text(
+              //         "${index + 1}. ${title[index]}",
+              //         textAlign: TextAlign.center,
+              //         style: const TextStyle(
+              //           fontSize: 15,
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        DetailPage(title: title[index], index: index),
+                  ),
+                );
+              },
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
