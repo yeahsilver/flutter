@@ -10,16 +10,38 @@ class DesktopBody extends StatelessWidget {
         title: const Text('Desktop'),
       ),
       backgroundColor: Colors.deepPurple[200],
-      body: Column(
+      body: Row(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              height: 300,
-              color: Colors.deepPurple[400],
+          Expanded(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Container(
+                    height: 300,
+                    color: Colors.deepPurple[400],
+                  ),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          color: Colors.deepPurple[300],
+                          height: 120,
+                        ),
+                      );
+                    },
+                  ),
+                )
+              ],
             ),
           ),
-          Expanded(
+          // Side Panel
+          SizedBox(
+            width: 300,
             child: ListView.builder(
               itemCount: 10,
               itemBuilder: (context, index) {
@@ -32,7 +54,7 @@ class DesktopBody extends StatelessWidget {
                 );
               },
             ),
-          )
+          ),
         ],
       ),
     );
