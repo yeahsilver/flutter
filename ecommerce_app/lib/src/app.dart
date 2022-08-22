@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/src/features/products_list/products_list_screen.dart';
 import 'package:ecommerce_app/src/localization/string_hardcoded.dart';
+import 'package:ecommerce_app/src/routing/app.router.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -7,11 +8,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    // MaterialApp.router => the new flutter routing API (a.k.a Navigator 2.0)
+    return MaterialApp.router(
+      routeInformationProvider: goRouter.routeInformationProvider,
+      routeInformationParser: goRouter.routeInformationParser,
+      routerDelegate: goRouter.routerDelegate,
       debugShowCheckedModeBanner: false,
       restorationScopeId: 'app',
-      // * The home page of the app
-      home: const ProductsListScreen(),
       onGenerateTitle: (BuildContext context) => 'My Shop'.hardcoded,
       theme: ThemeData(
         primarySwatch: Colors.grey,
