@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:layout_tutorial/view/detail/first_page.dart';
 import 'package:layout_tutorial/view/detail/detail_page.dart';
 
 class HomePage extends StatefulWidget {

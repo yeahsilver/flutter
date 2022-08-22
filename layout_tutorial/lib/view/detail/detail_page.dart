@@ -32,8 +32,6 @@ class _DetailPageState extends State<DetailPage> {
   }
 
   Widget showTutorial(index) {
-    debugPrint("${index}");
-
     if (index == 0) {
       return const FirstPage();
     } else if (index == 1) {
