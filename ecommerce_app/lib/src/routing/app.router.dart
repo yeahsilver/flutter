@@ -1,5 +1,7 @@
 import 'package:ecommerce_app/src/features/account/account_screen.dart';
+import 'package:ecommerce_app/src/features/not_found/not_found_screen.dart';
 import 'package:ecommerce_app/src/features/orders_list/orders_list_screen.dart';
+import 'package:ecommerce_app/src/features/product_page/product_screen.dart';
 import 'package:ecommerce_app/src/features/products_list/products_list_screen.dart';
 import 'package:ecommerce_app/src/features/shopping_cart/shopping_cart_screen.dart';
 import 'package:ecommerce_app/src/features/sign_in/email_password_sign_in_screen.dart';
@@ -13,6 +15,7 @@ enum AppRoute {
   orders,
   account,
   signIn,
+  product,
 }
 
 final goRouter = GoRouter(
@@ -24,6 +27,16 @@ final goRouter = GoRouter(
       name: AppRoute.home.name,
       builder: (context, state) => const ProductsListScreen(),
       routes: [
+        GoRoute(
+          path: 'product/:id',
+          name: AppRoute.product.name,
+          builder: (context, state) {
+            // params: map of string key value pair
+            // '!' operator: as long as we pass the ID during routing, this value will never be null
+            final productId = state.params['id']!;
+            return ProductScreen(productId: productId);
+          },
+        ),
         GoRoute(
           path: 'cart',
           name: AppRoute.cart.name,
@@ -64,4 +77,5 @@ final goRouter = GoRouter(
       ],
     ),
   ],
+  errorBuilder: (context, state) => const NotFoundScreen(),
 );
