@@ -21,7 +21,8 @@ class FakeProductsRepository {
 
   // Stream: Emitting only onen value.
   Stream<List<Product>> watchProductsList() async* {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2), () => _products);
+
     yield _products;
   }
 
