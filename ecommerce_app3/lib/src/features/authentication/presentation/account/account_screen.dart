@@ -15,26 +15,42 @@ class AccountScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen<AsyncValue<void>>(
+      AccountScreenControllerProvider,
+      (previousState, state) {
+        if (!state.isRefreshing && state.hasError) {
+          showExceptionAlertDialog(
+              context: context,
+              title: 'Error'.hardcoded,
+              exception: state.error);
+        }
+      },
+    );
+    final state = ref.watch(AccountScreenControllerProvider);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Account'.hardcoded),
+        title: state.isLoading
+            ? const CircularProgressIndicator()
+            : Text('Account'.hardcoded),
         actions: [
           ActionTextButton(
             text: 'Logout'.hardcoded,
-            onPressed: () async {
-              final logout = await showAlertDialog(
-                context: context,
-                title: 'Are you sure?'.hardcoded,
-                cancelActionText: 'Cancel'.hardcoded,
-                defaultActionText: 'Logout'.hardcoded,
-              );
-              if (logout == true) {
-                await ref
-                    .read(AccountScreenControllerProvider.notifier)
-                    .signOut();
-                Navigator.of(context).pop();
-              }
-            },
+            onPressed: state.isLoading
+                ? null
+                : () async {
+                    final logout = await showAlertDialog(
+                      context: context,
+                      title: 'Are you sure?'.hardcoded,
+                      cancelActionText: 'Cancel'.hardcoded,
+                      defaultActionText: 'Logout'.hardcoded,
+                    );
+                    if (logout == true) {
+                      await ref
+                          .read(AccountScreenControllerProvider.notifier)
+                          .signOut();
+                      Navigator.of(context).pop();
+                    }
+                  },
           ),
         ],
       ),
