@@ -13,6 +13,7 @@ class FakeAuthRepository {
 
   @override
   Future<void> signInWithEmailAndPassword(String email, String password) async {
+    await Future.delayed(const Duration(seconds: 3));
     if (currentUser == null) {
       _authState.value = AppUser(
         uid: email.split('').reversed.join(),
