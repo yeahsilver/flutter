@@ -1,22 +1,55 @@
 import 'package:ecommerce_app/src/features/authentication/domain/app_user.dart';
+import 'package:ecommerce_app/src/utils/in_memory_store.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FakeAuthRepository {
+  final _authState = InMemotryStore<AppUser?>(null);
+
+  @override
   Stream<AppUser?> authStateChanges() =>
-      Stream.value(null); // User is not authenticated
-  AppUser? get currentUser => null;
+      _authState.stream; // User is not authenticated
+  @override
+  AppUser? get currentUser => _authState.value;
 
-  Future<void> signInWithEmailAndPassword(
-      String email, String password) async {}
+  @override
+  Future<void> signInWithEmailAndPassword(String email, String password) async {
+    if (currentUser == null) {
+      _authState.value = AppUser(
+        uid: email.split('').reversed.join(),
+        email: email,
+      );
+    }
+  }
 
+  @override
   Future<void> createUserWithEmailAndPassword(
-      String email, String password) async {}
+      String email, String password) async {
+    if (currentUser == null) {
+      _createNewUser(email);
+    }
+  }
 
-  Future<void> signOut() async {}
+  @override
+  Future<void> signOut() async {
+    _authState.value = null;
+  }
+
+  void dispose() => _authState.close();
+
+  void _createNewUser(String email) {
+    if (currentUser == null) {
+      _authState.value = AppUser(
+        uid: email.split('').reversed.join(),
+        email: email,
+      );
+    }
+  }
 }
 
 final authRepositoryProvider = Provider<FakeAuthRepository>((ref) {
-  return FakeAuthRepository();
+  final auth = FakeAuthRepository();
+  ref.onDispose(() => auth.dispose());
+  return auth;
 });
 
 final authStateChangesProvider = StreamProvider.autoDispose<AppUser?>((ref) {
