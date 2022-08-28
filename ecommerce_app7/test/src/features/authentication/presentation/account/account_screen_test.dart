@@ -24,4 +24,16 @@ void main() {
       r.expectLogoutDialogNotFound();
     },
   );
+
+  testWidgets(
+    'Confirm logout failure',
+    (tester) async {
+      final r = AuthRobot(tester);
+      await r.pumpAccountScreen();
+      await r.tapLogoutButton();
+      r.expectLogoutDialogFound();
+      await r.tapDialogLogoutButton();
+      r.expectLogoutDialogNotFound();
+    },
+  );
 }

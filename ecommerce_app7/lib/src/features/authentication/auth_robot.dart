@@ -1,5 +1,9 @@
 import 'package:ecommerce_app/src/common_widgets/alert_dialogs.dart';
+import 'package:ecommerce_app/src/common_widgets/primary_button.dart';
+import 'package:ecommerce_app/src/features/authentication/data/fake_auth_repository.dart';
 import 'package:ecommerce_app/src/features/authentication/presentation/account/account_screen.dart';
+import 'package:ecommerce_app/src/features/authentication/presentation/sign_in/email_password_sign_in_screen.dart';
+import 'package:ecommerce_app/src/features/authentication/presentation/sign_in/email_password_sign_in_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -8,7 +12,28 @@ class AuthRobot {
   AuthRobot(this.tester);
   final WidgetTester tester;
 
-  Future<void> pumpAccountScreen() async {
+  Future<void> pumpEmailPasswordSignInContents(
+      {required FakeAuthRepository authRepository,
+      required EmailPasswordSignInFormType formType,
+      VoidCallback? onSignIn}) {
+    return tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          authRepositoryProvider.overrideWithProvider(authRepository)
+        ],
+        child: MaterialApp(
+          home: Scaffold(
+            body: EmailPasswordSignInContents(
+              formType: formType,
+              onSignedIn: onSignIn,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> pumpAccountScreen({FakeAuthRepository? authRepository}) async {
     await tester.pumpWidget(
       const ProviderScope(
         child: MaterialApp(
@@ -47,6 +72,13 @@ class AuthRobot {
     final finder = find.byKey(kDialogDefaultKey);
     expect(finder, findsOneWidget);
     await tester.tap(finder);
+    await tester.pump();
+  }
+
+  Future<void> tapEmailAndPasswordSubmitButton() async {
+    final primaryButton = find.byType(PrimaryButton);
+    expect(primaryButton, findsOneWidget);
+    await tester.tap(primaryButton);
     await tester.pump();
   }
 }
