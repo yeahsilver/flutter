@@ -26,7 +26,10 @@ class SettingList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Color.fromRGBO(44, 44, 44, 1),
+        elevation: 0.0,
+      ),
       backgroundColor: Color.fromRGBO(44, 44, 44, 1),
       body: SafeArea(
         child: Column(
@@ -36,7 +39,7 @@ class SettingList extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.fromLTRB(20, 20, 0, 40),
               child: Text(
-                "Setting",
+                "Settings",
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
                   color: Colors.white,
@@ -50,60 +53,77 @@ class SettingList extends StatelessWidget {
                 shrinkWrap: true,
                 children: const [
                   ListTile(
+                    contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 15),
                     title: Text(
                       "Notifications",
                       style: TextStyle(color: Colors.white),
                     ),
-                    trailing: Icon(Icons.keyboard_arrow_right),
+                    trailing: Icon(
+                      Icons.keyboard_arrow_right,
+                      color: Color.fromRGBO(91, 91, 113, 1),
+                    ),
                   ),
                   ListTile(
+                    contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 15),
                     title: Text(
                       "Notice",
                       style: TextStyle(color: Colors.white),
                     ),
-                    trailing: Icon(Icons.keyboard_arrow_right),
+                    trailing: Icon(
+                      Icons.keyboard_arrow_right,
+                      color: Color.fromRGBO(91, 91, 113, 1),
+                    ),
                   ),
                   ListTile(
+                    contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 15),
                     title: Text(
                       "FAQ",
                       style: TextStyle(color: Colors.white),
                     ),
-                    trailing: Icon(Icons.keyboard_arrow_right),
+                    trailing: Icon(
+                      Icons.keyboard_arrow_right,
+                      color: Color.fromRGBO(91, 91, 113, 1),
+                    ),
                   ),
                   ListTile(
+                    contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 15),
                     title: Text(
                       "Pricing",
                       style: TextStyle(color: Colors.white),
                     ),
-                    trailing: Icon(Icons.keyboard_arrow_right),
+                    trailing: Icon(
+                      Icons.keyboard_arrow_right,
+                      color: Color.fromRGBO(91, 91, 113, 1),
+                    ),
                   ),
                   ListTile(
+                    contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 15),
                     title: Text(
                       "Terms of Service",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
                     ),
-                    trailing: Icon(Icons.keyboard_arrow_right),
+                    trailing: Icon(
+                      Icons.keyboard_arrow_right,
+                      color: Color.fromRGBO(91, 91, 113, 1),
+                    ),
                   ),
                   ListTile(
+                    contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 15),
                     title: Text(
                       "Privacy Policy",
                       style: TextStyle(color: Colors.white),
                     ),
-                    trailing: Icon(Icons.keyboard_arrow_right),
+                    trailing: Icon(
+                      Icons.keyboard_arrow_right,
+                      color: Color.fromRGBO(91, 91, 113, 1),
+                    ),
                   ),
                   ListTile(
+                    contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 15),
                     title: Text(
                       "Version",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    trailing: Text(
-                      "1.0.0 Version",
-                      style: TextStyle(color: Color.fromRGBO(235, 255, 0, 0)),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text(
-                      "Logout",
                       style: TextStyle(color: Colors.white),
                     ),
                     trailing: Text(
@@ -114,6 +134,14 @@ class SettingList extends StatelessWidget {
                     ),
                   ),
                   ListTile(
+                    contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 15),
+                    title: Text(
+                      "Logout",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  ListTile(
+                    contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 15),
                     title: Text(
                       "Delete account",
                       style: TextStyle(
